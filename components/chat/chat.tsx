@@ -13,7 +13,7 @@ interface RightMsgProps {
 const ChatLeft = ({ msg }: leftMsgProps) => {
     return (
 
-        <div className='px-4 py-2 bg-[#0e1116] border-2 border-[#ffffff1f] rounded-full flex gap-2 items-end'>
+        <div className='px-4 py-2 bg-[#0e1116] border-2 border-[#ffffff1f] rounded-full flex gap-2 items-end z-[100]'>
             <p className='text-[14px]'> {msg}</p>
 
             <span className='text-[10px] opacity-80 font-mono flex items-center gap-1'>22:30</span>
@@ -27,7 +27,7 @@ export default ChatLeft
 
 export const ChatRight = ({ msg, isSeen }: RightMsgProps) => {
     return (
-        <div className='border-2 border-[#ffffff1f] rounded-full'>
+        <div className='border-2 border-[#ffffff1f] rounded-full z-[100]'>
             <div className='px-4 py-2 from-teal-500 to-lime-500 bg-gradient-to-r  rounded-full flex gap-2 items-end'>
                 <p className='text-[14px]'> {msg}</p>
 

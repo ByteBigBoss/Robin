@@ -13,6 +13,8 @@ import { Splitter, SplitterPanel } from 'primereact/splitter';
 import { ScrollPanel } from 'primereact/scrollpanel';
 
 import { useState } from "react";
+import DotPattern from "@/components/magicui/dot-pattern";
+import { cn } from "@/lib/utils";
 
 
 export default function Chat() {
@@ -24,7 +26,7 @@ export default function Chat() {
         e.target.style.height = 'auto';  // Reset the height
         e.target.style.height = `${e.target.scrollHeight}px`;  // Set the new height
     };
-    
+
 
     return (
         <div className="" >
@@ -47,7 +49,7 @@ export default function Chat() {
 
                             {isSearch &&
                                 <div className="  pb-2 pt-4 ">
-                                    <input type="search" placeholder="Find User" className="w-full h-[50px] border rounded-full  border-[#ffffff1f] text-[1rem] bg-[#131313] font-medium px-[16px]" />
+                                    <input type="search" placeholder="Find User" className="w-full h-[40px] border rounded-full  border-[#ffffff1f] text-[1rem] bg-[#131313] font-medium px-[20px]" />
                                 </div>}
                         </div>
                     </div>
@@ -96,7 +98,7 @@ export default function Chat() {
 
                                         {isSearch &&
                                             <div className="  pb-2 pt-4 ">
-                                                <input type="search" placeholder="Find User" className="w-full h-[50px] border rounded-full  border-[#ffffff1f] text-[1rem] bg-[#131313] font-medium px-[16px]" />
+                                                <input type="search" placeholder="Find User" className="w-full h-[40px] border rounded-full  border-[#ffffff1f] text-[1rem] bg-[#131313] font-medium px-[20px]" />
                                             </div>}
                                     </div>
                                 </div>
@@ -127,8 +129,14 @@ export default function Chat() {
                 </SplitterPanel>
 
                 {/* RIGHT */}
-                <SplitterPanel className="flex align-items-center justify-content-center " size={75}>
-                    <ScrollPanel style={{ width: '100%', height: '100vh' }} className="relative">
+                <SplitterPanel className="flex align-items-center justify-content-center relative" size={75}>
+                    <ScrollPanel style={{ width: '100%', height: '100vh' }} className="">
+
+                        <DotPattern
+                            className={cn(
+                                "[mask-image:radial-gradient(300px_circle_at_center,white,transparent)]",
+                            )}
+                        />
 
                         {/* TOP */}
                         <div className="flex items-center z-[2000] gap-4 box-border-2 w-full bg-[#131313] py-3 px-3 fixed top-0 border-b border-[#ffffff1f]">
@@ -170,8 +178,8 @@ export default function Chat() {
                         </div>
 
                         {/* BOTTOM */}
-                        <div className="absolute bottom-0 w-full ">
-                            <div className="flex items-center gap-4 z-[2000] box-border-2 w-full bg-[#131313] pt-4 pb-6 px-6  border-t border-[#ffffff1f] ">
+                        <div className="fixed bottom-0 w-full z-[2000]">
+                            <div className="flex items-center gap-4  box-border-2 w-full bg-[#131313] pt-4 pb-6 px-6  border-t border-[#ffffff1f] ">
 
                                 <div className="flex items-start w-full gap-6">
                                     <div className="flex items-center gap-6">
@@ -179,13 +187,13 @@ export default function Chat() {
                                         <Paperclip className="opacity-80" />
                                     </div>
 
-                                    <div className="flex-1 flex gap-8 pr-[24px]">
+                                    <div className="input-w flex gap-8 pr-[24px]">
                                         <textarea
                                             className=" bg-transparent border-none resize-none outline-none focus:outline-none w-full "
                                             placeholder="Type a message..."
                                             style={{ height, overflow: 'hidden' }}
                                             onInput={handleInput}
-                                        
+
                                         />
                                         <SendHorizonal className="opacity-80" />
                                     </div>

@@ -67,3 +67,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.input-w{
+  width: calc(100vw - 34vw);
+}
