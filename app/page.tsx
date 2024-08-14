@@ -39,7 +39,7 @@ const Home = () => {
         </svg>
 
         <div className='text-2xl font-medium mt-3 mobile:text-xl'>Welcom to Robin.</div>
-        <div className='text-[14px] opacity-80 mobile:w-10/12 text-center mobile:text-[12px]'>Real-time communication platform coporations.</div>
+        <div className='text-[14px] opacity-80 mobile:w-10/12 text-center mobile:text-[12px]'>Real-time communication platform for coporations.</div>
 
         {step === 0 &&  <div className='mt-4 relative flex items-center'>
           <Input type="email" placeholder="Email" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setEmail(evt.target.value);}}/>
