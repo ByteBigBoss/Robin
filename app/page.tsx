@@ -1,5 +1,6 @@
 "use client"
 import { Input } from '@/components/ui/input'
+import { GET_USERS } from '@/graphql/query'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -43,7 +44,7 @@ const Home = () => {
 
         {step === 0 &&  <div className='mt-4 relative flex items-center'>
           <Input type="email" placeholder="Email" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setEmail(evt.target.value);}}/>
-          <button onClick={()=>setStep(1)} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Next <ArrowRight size={18} /></button>
+          <button onClick={()=>GET_USERS()} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Next <ArrowRight size={18} /></button>
         </div>
         }
              {step === 1 &&  <div className='mt-4 relative flex items-center'>
