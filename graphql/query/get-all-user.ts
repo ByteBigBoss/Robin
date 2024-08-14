@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BASE_URL } from "./endpoints";
+import { BASE_URL } from "../endpoints";
 
 const GET_ALL_USERS = `
 query{
@@ -13,7 +13,7 @@ query{
 export const GET_USERS = async () => {
 
     try {
-        const response: AxiosResponse<GraphQLResponse> = await axios.post(
+        const response: AxiosResponse<GetUsersResponse> = await axios.post(
           BASE_URL,
           {
             query: GET_ALL_USERS,
@@ -22,8 +22,8 @@ export const GET_USERS = async () => {
     
         const users = response.data.data.allUsers;
         console.log(users);
-      } catch (error) {
+    } catch (error) {
         console.error('Error fetching users:');
-      }
+    }
 
 };

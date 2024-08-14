@@ -1,6 +1,6 @@
 "use client"
 import { Input } from '@/components/ui/input'
-import { GET_USERS } from '@/graphql/query'
+import { LOGIN } from '@/graphql/mutation/login'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -11,11 +11,51 @@ const Home = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [step, setStep] = useState(0);
+  const [error, setError] = useState('none');
 
   const router = useRouter();
 
   const toChat = ()=>{
     router.push('/chat', {scroll:false})
+  };
+
+  const toHome = ()=>{
+    router.push('/', {scroll:false})
+  };
+  
+  const checkEmail = ()=>{
+    if(email === ''){
+      setError("Please Enter Your Email");
+    }else if(email !== ''){
+      setError("none");
+      setStep(1)
+    } 
+    
+  };
+
+  const handleLogin = async()=>{
+
+ 
+    if(password === ''){
+      setError("Please Enter Your Password");
+    }else{
+      setError("none");
+
+      const args = {
+        email,
+        password
+      }
+
+      const res = await LOGIN(args);
+
+      if(res === "success"){
+        toChat();
+      }else{
+        toHome();
+      }
+
+    }
+
   };
 
   return (
@@ -41,15 +81,16 @@ const Home = () => {
 
         <div className='text-2xl font-medium mt-3 mobile:text-xl'>Welcom to Robin.</div>
         <div className='text-[14px] opacity-80 mobile:w-10/12 text-center mobile:text-[12px]'>Real-time communication platform for coporations.</div>
+        {error !== 'none' && <span className='text-[12px] text-red-500'>{error}</span>}
 
         {step === 0 &&  <div className='mt-4 relative flex items-center'>
           <Input type="email" placeholder="Email" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setEmail(evt.target.value);}}/>
-          <button onClick={()=>GET_USERS()} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Next <ArrowRight size={18} /></button>
+          <button onClick={checkEmail} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Next <ArrowRight size={18} /></button>
         </div>
         }
              {step === 1 &&  <div className='mt-4 relative flex items-center'>
           <Input type="password" placeholder="XXX-XXX" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setPassword(evt.target.value);}}/>
-          <button onClick={toChat} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Login <ArrowRight size={18} /></button>
+          <button onClick={handleLogin} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Login <ArrowRight size={18} /></button>
         </div>
         }
       </div>
