@@ -14,22 +14,10 @@ export const GET_USERS = async () => {
 
     try {
         const response: AxiosResponse<GraphQLResponse> = await axios.post(
-          'http://localhost:8000/graphql',
+          BASE_URL,
           {
-            query: `
-              query {
-                allUsers {
-                  id
-                  name
-                }
-              }
-            `,
+            query: GET_ALL_USERS,
           },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
         );
     
         const users = response.data.data.allUsers;
