@@ -51,7 +51,10 @@ const Home = () => {
       if(res === "success"){
         toChat();
       }else{
-        toHome();
+        setError("Wrong Email or Password");
+        setStep(0);
+        setPassword('');
+        setEmail('');
       }
 
     }
@@ -84,12 +87,12 @@ const Home = () => {
         {error !== 'none' && <span className='text-[12px] text-red-500'>{error}</span>}
 
         {step === 0 &&  <div className='mt-4 relative flex items-center'>
-          <Input type="email" placeholder="Email" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setEmail(evt.target.value);}}/>
+          <Input type="email" placeholder="Email" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setEmail(evt.target.value);}} value={email}/>
           <button onClick={checkEmail} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Next <ArrowRight size={18} /></button>
         </div>
         }
              {step === 1 &&  <div className='mt-4 relative flex items-center'>
-          <Input type="password" placeholder="XXX-XXX" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setPassword(evt.target.value);}}/>
+          <Input type="password" placeholder="XXX-XXX" className='w-[400px] mobile:w-[280px] border-[#ffffff1f]' onChange={(evt)=>{evt.preventDefault; setPassword(evt.target.value);}} value={password}/>
           <button onClick={handleLogin} className='flex items-center gap-1 text-[12px] absolute right-[12px]  font-medium text-lime-400'>Login <ArrowRight size={18} /></button>
         </div>
         }

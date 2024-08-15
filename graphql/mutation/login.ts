@@ -38,7 +38,15 @@ export const LOGIN = async ({ email, password }: LoginProps): Promise<string> =>
         const user = response.data.data.login;
         console.log(user);
 
-        return "success";
+        let status;
+
+        if(user.msg==="Success"){
+            status = "success";
+        }else{
+            status = "error";
+        }
+
+        return status;
 
     } catch (error) {
         console.error('LOGIN FAILED:', error);
